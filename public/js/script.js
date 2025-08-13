@@ -384,3 +384,41 @@ function filterGamesByCategory(category) {
   console.log("Filtering by category:", category)
 }
 
+function setupMobileMenu() {
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  if (!btn || !menu) return;
+
+  // Prevent attaching multiple listeners if this gets called twice
+  if (btn.dataset.initialized === "true") return;
+  btn.dataset.initialized = "true";
+
+  let isOpen = false;
+
+  const setOpen = (open) => {
+  isOpen = open;
+  btn.classList.toggle("open", open);
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+
+  if (open) {
+    // ensure it's visible, then animate to 'show'
+    menu.classList.add("show");
+    } else {
+      // animate close, then hide height
+        menu.classList.remove("show");
+    }
+  };
+
+  btn.addEventListener("click", () => setOpen(!isOpen));
+
+  // Close menu when clicking a link (optional nice touch)
+  menu.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", () => setOpen(false));
+  });
+}
+
+  if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupMobileMenu);
+  } else {
+      setupMobileMenu();
+  }

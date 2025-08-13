@@ -6,44 +6,8 @@
     <title>275 Studio - Web Game Developer</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'studio-blue': '#1e3a5f',
-                        'studio-orange': '#f59e0b',
-                        'studio-cream': '#fef7ed'
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Hamburger → X animation */
-        #mobile-menu-btn.open span:nth-child(1) {
-            transform: rotate(45deg) translateY(8px);
-        }
-        #mobile-menu-btn.open span:nth-child(2) {
-            opacity: 0;
-        }
-        #mobile-menu-btn.open span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-8px);
-        }
-
-        /* Smooth slide for mobile menu */
-        #mobile-menu {
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-        }
-        #mobile-menu.show {
-            max-height: 400px; /* adjust if menu gets taller */
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/js/tailwind-config.js"></script>
 </head>
 <body class="bg-studio-cream">
     <!-- Header -->
@@ -243,49 +207,6 @@
     </footer>
 
     <!-- Your external logic (game data, etc.) -->
-    <script src="script.js"></script>
-
-    <!-- Mobile menu init with double-attach guard -->
-    <script>
-        function setupMobileMenu() {
-            const btn = document.getElementById("mobile-menu-btn");
-            const menu = document.getElementById("mobile-menu");
-            if (!btn || !menu) return;
-
-            // Prevent attaching multiple listeners if this gets called twice
-            if (btn.dataset.initialized === "true") return;
-            btn.dataset.initialized = "true";
-
-            let isOpen = false;
-
-            const setOpen = (open) => {
-                isOpen = open;
-                btn.classList.toggle("open", open);
-                btn.setAttribute("aria-expanded", open ? "true" : "false");
-
-                if (open) {
-                    // ensure it's visible, then animate to 'show'
-                    menu.classList.add("show");
-                } else {
-                    // animate close, then hide height
-                    menu.classList.remove("show");
-                }
-            };
-
-            btn.addEventListener("click", () => setOpen(!isOpen));
-
-            // Close menu when clicking a link (optional nice touch)
-            menu.querySelectorAll('a[href^="#"]').forEach((link) => {
-                link.addEventListener("click", () => setOpen(false));
-            });
-        }
-
-        // Ensure it runs after DOM is ready
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", setupMobileMenu);
-        } else {
-            setupMobileMenu();
-        }
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
