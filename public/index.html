@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>275 Studio - Web Game Developer</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'studio-blue': '#1e3a5f',
+                        'studio-orange': '#f59e0b',
+                        'studio-cream': '#fef7ed'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hamburger → X animation */
+        #mobile-menu-btn.open span:nth-child(1) {
+            transform: rotate(45deg) translateY(8px);
+        }
+        #mobile-menu-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+        #mobile-menu-btn.open span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-8px);
+        }
+
+        /* Smooth slide for mobile menu */
+        #mobile-menu {
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+        }
+        #mobile-menu.show {
+            max-height: 400px; /* adjust if menu gets taller */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-studio-cream">
+    <!-- Header -->
+    <header class="bg-studio-cream py-4 px-6">
+        <nav class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="text-studio-blue font-bold text-xl">275 Studio</div>
+
+            <!-- Desktop nav -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-studio-blue hover:text-studio-orange transition-colors">About</a>
+                <a href="#games" class="text-studio-blue hover:text-studio-orange transition-colors">Games</a>
+                <a href="#team" class="text-studio-blue hover:text-studio-orange transition-colors">Our Team</a>
+                <a href="#contact" class="text-studio-blue hover:text-studio-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Hamburger -->
+            <button
+                id="mobile-menu-btn"
+                class="md:hidden text-studio-blue flex flex-col justify-center items-center w-8 h-8 space-y-1"
+                aria-label="Toggle navigation"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+            >
+                <span class="block w-6 h-0.5 bg-studio-blue transition-all duration-300"></span>
+                <span class="block w-6 h-0.5 bg-studio-blue transition-all duration-300"></span>
+                <span class="block w-6 h-0.5 bg-studio-blue transition-all duration-300"></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu (hidden on md and up) -->
+        <div id="mobile-menu" class="md:hidden bg-studio-cream px-6">
+            <div class="flex flex-col space-y-4 py-4">
+                <a href="#about" class="text-studio-blue hover:text-studio-orange transition-colors">About</a>
+                <a href="#games" class="text-studio-blue hover:text-studio-orange transition-colors">Games</a>
+                <a href="#team" class="text-studio-blue hover:text-studio-orange transition-colors">Our Team</a>
+                <a href="#contact" class="text-studio-blue hover:text-studio-orange transition-colors">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <div class="w-24 h-24 bg-studio-blue rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <div class="text-studio-orange text-3xl font-bold">275</div>
+                </div>
+                <div class="text-studio-blue text-sm font-semibold">STUDIO</div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-studio-blue mb-6">Web Game Platform Pioneers</h1>
+            <p class="text-studio-blue/80 text-lg mb-8 max-w-2xl mx-auto">
+                Creating immersive gaming experiences that run seamlessly in any browser. 
+                We push the boundaries of web technology to deliver console-quality games 
+                accessible to everyone.
+            </p>
+            <button class="bg-studio-blue text-white px-8 py-3 rounded-lg hover:bg-studio-blue/90 transition-colors">
+                Discover Our Story
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-studio-blue text-center mb-12">About 275 Studio</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-studio-blue mb-4">Revolutionizing Web Gaming</h3>
+                    <p class="text-gray-700 mb-4">
+                        Founded in 2015, 275 Studio emerged from a vision to democratize 
+                        gaming by making high-quality games accessible through web browsers. 
+                        We believe that great games shouldn't be limited by hardware 
+                        constraints or platform restrictions.
+                    </p>
+                </div>
+                <div class="bg-studio-blue rounded-lg p-8 text-white">
+                    <h4 class="text-xl font-semibold mb-4">Studio Workspace</h4>
+                    <div class="h-32 bg-studio-blue/50 rounded"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 px-6 bg-studio-blue">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Our Mission</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-studio-orange rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Accessibility</h3>
+                    <p class="text-white/80 text-sm">
+                        Making premium gaming experiences available to anyone with an internet connection, 
+                        regardless of device or operating system.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-studio-orange rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Innovation</h3>
+                    <p class="text-white/80 text-sm">
+                        Continuously pushing the limits of web technology to create immersive 
+                        and visually stunning gaming experiences.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-studio-orange rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Community</h3>
+                    <p class="text-white/80 text-sm">
+                        Building vibrant communities of players and developers who share our passion for 
+                        innovative, accessible gaming.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games Section -->
+    <section id="games" class="py-16 px-6 bg-studio-blue">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-4">Featured Games</h2>
+            <p class="text-white/80 text-center mb-12">
+                Explore our portfolio of innovative web games that showcase the power of modern browser technology.
+            </p>
+            
+            <!-- Featured Game Showcase -->
+            <div class="bg-studio-cream rounded-lg p-8 mb-12">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="bg-studio-orange/20 rounded-lg p-6 mb-4">
+                            <div class="text-studio-orange text-sm font-semibold mb-2">RPG</div>
+                            <h3 class="text-2xl font-bold text-studio-blue mb-4">Pixel Quest Adventures</h3>
+                            <p class="text-gray-700 mb-4">
+                                An immersive RPG experience built with cutting-edge web technologies
+                            </p>
+                            <div class="flex gap-4">
+                                <button class="bg-studio-blue text-white px-4 py-2 rounded text-sm hover:bg-studio-blue/90 transition-colors" onclick="openGameDetail('pixel-quest')">
+                                    Play Now
+                                </button>
+                                <button class="bg-studio-orange text-white px-4 py-2 rounded text-sm hover:bg-studio-orange/90 transition-colors" onclick="openGameDetail('pixel-quest')">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-studio-blue rounded-lg p-8 text-white">
+                        <h4 class="text-4xl font-bold mb-2">Pixel Quest</h4>
+                        <div class="text-studio-orange">Adventures</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Grid -->
+            <div id="games-grid" class="grid md:grid-cols-3 gap-6">
+                <!-- Games will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-16 px-6 bg-studio-cream">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-studio-blue text-center mb-4">Our Team</h2>
+            <p class="text-studio-blue/80 text-center mb-12">
+                Meet the passionate individuals behind 275 Studio's innovative gaming experiences.
+            </p>
+            <div id="team-grid" class="grid md:grid-cols-4 gap-6">
+                <!-- Team members will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-studio-blue py-12 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h3 class="text-2xl font-bold text-white mb-2">275 Studio</h3>
+            <p class="text-white/80 mb-8">Creating immersive web gaming experiences</p>
+            <div class="flex justify-center space-x-8 mb-8">
+                <a href="#about" class="text-studio-orange hover:text-white transition-colors">About</a>
+                <a href="#games" class="text-studio-orange hover:text-white transition-colors">Games</a>
+                <a href="#contact" class="text-studio-orange hover:text-white transition-colors">Contact</a>
+            </div>
+            <p class="text-white/60 text-sm">© 2024 275 Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Your external logic (game data, etc.) -->
+    <script src="script.js"></script>
+
+    <!-- Mobile menu init with double-attach guard -->
+    <script>
+        function setupMobileMenu() {
+            const btn = document.getElementById("mobile-menu-btn");
+            const menu = document.getElementById("mobile-menu");
+            if (!btn || !menu) return;
+
+            // Prevent attaching multiple listeners if this gets called twice
+            if (btn.dataset.initialized === "true") return;
+            btn.dataset.initialized = "true";
+
+            let isOpen = false;
+
+            const setOpen = (open) => {
+                isOpen = open;
+                btn.classList.toggle("open", open);
+                btn.setAttribute("aria-expanded", open ? "true" : "false");
+
+                if (open) {
+                    // ensure it's visible, then animate to 'show'
+                    menu.classList.add("show");
+                } else {
+                    // animate close, then hide height
+                    menu.classList.remove("show");
+                }
+            };
+
+            btn.addEventListener("click", () => setOpen(!isOpen));
+
+            // Close menu when clicking a link (optional nice touch)
+            menu.querySelectorAll('a[href^="#"]').forEach((link) => {
+                link.addEventListener("click", () => setOpen(false));
+            });
+        }
+
+        // Ensure it runs after DOM is ready
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", setupMobileMenu);
+        } else {
+            setupMobileMenu();
+        }
+    </script>
+</body>
+</html>

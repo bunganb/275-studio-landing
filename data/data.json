@@ -1,0 +1,185 @@
+{
+  "studio": {
+    "name": "275 Studio",
+    "tagline": "Web Game Platform Pioneers",
+    "description": "Creating immersive gaming experiences that run seamlessly in any browser. We push the boundaries of web technology to deliver console-quality games accessible to everyone.",
+    "founded": "2015",
+    "mission": {
+      "accessibility": "Making premium gaming experiences available to anyone with an internet connection, regardless of device or operating system.",
+      "innovation": "Continuously pushing the limits of web technology to create immersive and visually stunning gaming experiences.",
+      "community": "Building vibrant communities of players and developers who share our passion for innovative, accessible gaming."
+    }
+  },
+  "games": [
+    {
+      "id": "pixel-quest",
+      "title": "Pixel Quest Adventures",
+      "category": "RPG",
+      "description": "An immersive RPG experience built with cutting-edge web technologies",
+      "longDescription": "Embark on an epic journey through mystical realms filled with ancient magic, dangerous creatures, and legendary treasures. This immersive RPG experience combines classic pixel art aesthetics with modern web technology to deliver console-quality gameplay directly in your browser.",
+      "color": "bg-studio-orange",
+      "featured": true,
+      "releaseDate": "March 15, 2024",
+      "platform": "Web Browser (HTML5)",
+      "languages": "English, Spanish, French, German",
+      "ageRating": "Teen (13+)",
+      "fileSize": "~150 MB",
+      "players": "Single Player",
+      "screenshots": ["screenshot1.jpg", "screenshot2.jpg", "screenshot3.jpg"],
+      "features": [
+        {
+          "title": "Epic Story Campaign",
+          "description": "Experience a rich narrative spanning 40+ hours of gameplay with multiple branching storylines and meaningful character choices."
+        },
+        {
+          "title": "Dynamic Combat System",
+          "description": "Master a tactical turn-based combat system with elemental magic, combo attacks, and strategic positioning."
+        },
+        {
+          "title": "Character Progression",
+          "description": "Customize your party with 6 unique character classes, skill trees, and hundreds of equipment combinations."
+        },
+        {
+          "title": "Exploration & Secrets",
+          "description": "Discover hidden dungeons, solve ancient puzzles, and uncover legendary artifacts in a vast open world."
+        }
+      ],
+      "links": {
+        "itchio": "https://275studio.itch.io/pixel-quest",
+        "newgrounds": "https://www.newgrounds.com/portal/view/pixel-quest"
+      },
+      "developer": {
+        "name": "Alex Chen",
+        "title": "Lead Game Developer",
+        "bio": "Passionate indie developer with 8+ years of experience creating immersive web-based gaming experiences. Specializes in RPG mechanics and pixel art aesthetics.",
+        "email": "hello@gamedev.com",
+        "github": "github.com/alexchen-gamedev",
+        "twitter": "@alexchen_dev",
+        "portfolio": "alexchen-gamedev.dev"
+      }
+    },
+    {
+      "id": "racing-thunder",
+      "title": "Racing Thunder",
+      "category": "Racing",
+      "description": "High-speed racing with realistic physics and stunning visual effects.",
+      "longDescription": "Experience the thrill of high-speed racing with cutting-edge physics simulation and breathtaking visual effects that push the boundaries of web gaming.",
+      "color": "bg-studio-orange",
+      "featured": false,
+      "releaseDate": "January 20, 2024",
+      "platform": "Web Browser (HTML5)",
+      "languages": "English, Spanish, French",
+      "ageRating": "Everyone (E)",
+      "fileSize": "~80 MB",
+      "players": "Single Player & Multiplayer",
+      "features": [
+        {
+          "title": "Realistic Physics",
+          "description": "Advanced physics engine delivering authentic racing dynamics and vehicle handling."
+        },
+        {
+          "title": "Multiple Tracks",
+          "description": "Race across 15 unique tracks with varying weather conditions and time of day."
+        }
+      ]
+    },
+    {
+      "id": "battle-arena",
+      "title": "Battle Arena",
+      "category": "Strategy",
+      "description": "Strategic multiplayer battles with real-time combat mechanics.",
+      "longDescription": "Command your forces in intense strategic battles featuring real-time combat, resource management, and tactical decision-making.",
+      "color": "bg-studio-blue",
+      "featured": false,
+      "releaseDate": "June 10, 2024",
+      "platform": "Web Browser (HTML5)",
+      "languages": "English, Spanish, French, German, Japanese",
+      "ageRating": "Teen (13+)",
+      "fileSize": "~120 MB",
+      "players": "Multiplayer (2-8 players)",
+      "features": [
+        {
+          "title": "Real-time Strategy",
+          "description": "Fast-paced strategic gameplay with real-time unit control and base building."
+        },
+        {
+          "title": "Multiplayer Battles",
+          "description": "Compete against players worldwide in ranked matches and tournaments."
+        }
+      ]
+    },
+    {
+      "id": "mystic-realms",
+      "title": "Mystic Realms",
+      "category": "Adventure",
+      "description": "Explore magical worlds filled with ancient mysteries and hidden treasures.",
+      "longDescription": "Journey through enchanted landscapes and mystical dimensions in this captivating adventure that blends exploration, puzzle-solving, and magical discovery.",
+      "color": "bg-studio-orange",
+      "featured": false,
+      "releaseDate": "September 5, 2024",
+      "platform": "Web Browser (HTML5)",
+      "languages": "English, Spanish, French, German",
+      "ageRating": "Everyone 10+ (E10+)",
+      "fileSize": "~95 MB",
+      "players": "Single Player",
+      "features": [
+        {
+          "title": "Magical Exploration",
+          "description": "Discover hidden realms and unlock the secrets of ancient magical civilizations."
+        },
+        {
+          "title": "Puzzle Adventures",
+          "description": "Solve intricate puzzles and overcome mystical challenges using magical abilities."
+        }
+      ]
+    }
+  ],
+  "team": [
+    {
+      "name": "Sarah Chen",
+      "role": "Creative Director",
+      "initials": "SC",
+      "bio": "Visionary leader with over 10 years of experience in game design and creative direction. Sarah guides the artistic vision and ensures every game delivers a memorable experience.",
+      "color": "bg-studio-orange",
+      "email": "sarah@275studio.com",
+      "linkedin": "linkedin.com/in/sarahchen-gamedesign"
+    },
+    {
+      "name": "Marcus Rodriguez",
+      "role": "Lead Developer",
+      "initials": "MR",
+      "bio": "Full-stack engineer specializing in web technologies and game engine development. Marcus architects the technical foundation that powers our innovative gaming experiences.",
+      "color": "bg-studio-blue",
+      "email": "marcus@275studio.com",
+      "github": "github.com/marcusrodriguez-dev"
+    },
+    {
+      "name": "Emily Watson",
+      "role": "UI/UX Designer",
+      "initials": "EW",
+      "bio": "Award-winning designer with expertise in user experience and interface design. Emily crafts intuitive and beautiful interfaces that enhance player engagement.",
+      "color": "bg-studio-orange",
+      "email": "emily@275studio.com",
+      "portfolio": "emilywatson-design.com"
+    },
+    {
+      "name": "David Kim",
+      "role": "Technical Artist",
+      "initials": "DK",
+      "bio": "Innovative technical artist with focus on visual effects and performance optimization. David bridges the gap between artistic vision and technical implementation.",
+      "color": "bg-studio-blue",
+      "email": "david@275studio.com",
+      "artstation": "artstation.com/davidkim-tech"
+    }
+  ],
+  "contact": {
+    "email": "hello@275studio.com",
+    "address": "San Francisco, CA",
+    "social": {
+      "twitter": "@275studio",
+      "instagram": "@275studio",
+      "youtube": "275Studio",
+      "discord": "discord.gg/275studio"
+    }
+  }
+}
