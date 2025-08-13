@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Candara';
+    src: url('../fonts/Candara.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Candara-Bold';
+    src: url('../fonts/Candara_Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
 /* Hamburger → X animation */
 #mobile-menu-btn.open span:nth-child(1) {
     transform: rotate(45deg) translateY(8px);

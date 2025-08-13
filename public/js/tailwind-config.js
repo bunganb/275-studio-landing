@@ -2,9 +2,13 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                'studio-blue': '#1e3a5f',
-                'studio-orange': '#f59e0b',
-                'studio-cream': '#fef7ed'
+                'studio-blue': '#002D4A',
+                'studio-orange': '#FBB715',
+                'studio-cream': '#F9EDD7'
+            },
+            fontFamily: {
+                candara: ['Candara', 'sans-serif'],
+                candaraBold: ['Candara-Bold', 'sans-serif']
             }
         }
     }
