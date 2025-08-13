@@ -149,7 +149,7 @@ function loadGames(games) {
     .filter((game) => !game.featured)
     .map(
       (game) => `
-        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-4 border-[#FBB715]">
             <div class="${game.color} h-32 flex items-center justify-center">
                 <h3 class="text-white font-bold text-lg">${game.title}</h3>
             </div>

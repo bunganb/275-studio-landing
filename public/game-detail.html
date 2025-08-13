@@ -4,22 +4,28 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title id="page-title">Game Detail - 275 Studio</title>
+        <link rel="icon" type="image/x-icon" href="image/favicon.png" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="css/style.css">
         <script src="js/tailwind-config.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
 </head>
 <body class="bg-studio-cream">
     <!-- Header -->
-    <header class="bg-studio-cream py-4 px-6 ">
-        <nav class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-studio-blue font-bold text-xl">275 Studio</div>
+    <header class=" py-6 px-6">
+        <nav class="max-w-6xl mx-auto flex justify-between text-2xl items-center  font-candaraBold">
+            <div class="text-studio-blue font-bold ">275 Studio</div>
+
+            <!-- Desktop nav -->
             <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-studio-blue hover:text-studio-orange transition-colors">About</a>
+                <a href="index.html#about" class="text-studio-blue hover:text-studio-orange transition-colors">About</a>
                 <a href="index.html#games" class="text-studio-blue hover:text-studio-orange transition-colors">Games</a>
                 <a href="index.html#team" class="text-studio-blue hover:text-studio-orange transition-colors">Our Team</a>
                 <a href="index.html#contact" class="text-studio-blue hover:text-studio-orange transition-colors">Contact</a>
             </div>
-             <button
+
+            <!-- Hamburger -->
+            <button
                 id="mobile-menu-btn"
                 class="md:hidden text-studio-blue flex flex-col justify-center items-center w-8 h-8 space-y-1"
                 aria-label="Toggle navigation"
@@ -31,6 +37,16 @@
                 <span class="block w-6 h-0.5 bg-studio-blue transition-all duration-300"></span>
             </button>
         </nav>
+
+        <!-- Mobile Menu (hidden on md and up) -->
+        <div id="mobile-menu" class="md:hidden bg-studio-cream px-6  font-candaraBold">
+            <div class="flex flex-col space-y-4 py-4">
+                <a href="#about" class="text-studio-blue hover:text-studio-orange transition-colors">About</a>
+                <a href="#games" class="text-studio-blue hover:text-studio-orange transition-colors">Games</a>
+                <a href="#team" class="text-studio-blue hover:text-studio-orange transition-colors">Our Team</a>
+                <a href="#contact" class="text-studio-blue hover:text-studio-orange transition-colors">Contact</a>
+            </div>
+        </div>
     </header>
 
     <!-- Breadcrumb -->
