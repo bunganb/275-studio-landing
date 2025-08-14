@@ -1,424 +1,278 @@
 // Game and content data
-let gameData = {}
+let gameData = null; // Use null to indicate data hasn't been loaded yet
 
-// Load data from JSON file
 async function loadData() {
-  try {
-    const response = await fetch("data.json")
-    gameData = await response.json()
-    return gameData
-  } catch (error) {
-    console.error("Error loading data:", error)
-    // Fallback data if JSON fails to load
-    return getDefaultData()
-  }
+    if (gameData) {
+        return gameData;
+    }
+    try {
+        const response = await fetch("data.json");
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        gameData = await response.json();
+        return gameData;
+    } catch (error) {
+        // Jika GAGAL, tampilkan pesan error di halaman dan hentikan proses.
+        console.error("FATAL: Could not load data from data.json.", error);
+        document.body.innerHTML = `
+            <div style="text-align: center; padding: 50px; font-family: sans-serif;">
+                <h1>Oops! Something went wrong.</h1>
+                <p>We couldn't load the necessary data to run the website.</p>
+                <p>Please check the console for more details.</p>
+            </div>`;
+        return null; // Kembalikan null untuk menandakan kegagalan
+    }
 }
 
 // Default data fallback
 function getDefaultData() {
-  return {
-    games: [
-      {
-        id: "pixel-quest",
-        title: "Pixel Quest Adventures",
-        category: "RPG",
-        description: "An immersive RPG experience built with cutting-edge web technologies",
-        longDescription:
-          "Embark on an epic journey through mystical realms filled with ancient magic, dangerous creatures, and legendary treasures.",
-        color: "bg-studio-orange",
-        featured: true,
-        releaseDate: "March 15, 2024",
-        platform: "Web Browser (HTML5)",
-        languages: "English, Spanish, French, German",
-        ageRating: "Teen (13+)",
-        fileSize: "~150 MB",
-        players: "Single Player",
-        links: {
-          itchio: "https://example.com/pixel-quest",
-          newgrounds: "https://example.com/pixel-quest-ng",
-        },
-        features: [
-          {
-            title: "Epic Story Campaign",
-            description:
-              "Experience a rich narrative spanning 40+ hours of gameplay with multiple branching storylines and meaningful character choices.",
-          },
-          {
-            title: "Dynamic Combat System",
-            description:
-              "Master a tactical turn-based combat system with elemental magic, combo attacks, and strategic positioning.",
-          },
-          {
-            title: "Character Progression",
-            description:
-              "Customize your party with 6 unique character classes, skill trees, and hundreds of equipment combinations.",
-          },
-          {
-            title: "Exploration & Secrets",
-            description:
-              "Discover hidden dungeons, solve ancient puzzles, and uncover legendary artifacts in a vast open world.",
-          },
-        ],
-        developer: {
-          name: "Alex Chen",
-          title: "Lead Game Developer",
-          bio: "Passionate indie developer with 8+ years of experience creating immersive web-based gaming experiences.",
-          email: "hello@gamedev.com",
-          github: "github.com/alexchen-gamedev",
-          twitter: "@alexchen_dev",
-          portfolio: "alexchen-gamedev.dev",
-        },
-      },
-      {
-        id: "racing-thunder",
-        title: "Racing Thunder",
-        category: "Racing",
-        description: "High-speed racing with realistic physics and stunning visual effects.",
-        color: "bg-studio-orange",
-      },
-      {
-        id: "battle-arena",
-        title: "Battle Arena",
-        category: "Strategy",
-        description: "Strategic multiplayer battles with real-time combat mechanics.",
-        color: "bg-studio-blue",
-      },
-      {
-        id: "mystic-realms",
-        title: "Mystic Realms",
-        category: "Adventure",
-        description: "Explore magical worlds filled with ancient mysteries and hidden treasures.",
-        color: "bg-studio-orange",
-      },
-    ],
-    team: [
-      {
-        name: "Sarah Chen",
-        role: "Creative Director",
-        initials: "SC",
-        bio: "Visionary leader with over 10 years of experience in game design and creative direction.",
-        color: "bg-studio-orange",
-      },
-      {
-        name: "Marcus Rodriguez",
-        role: "Lead Developer",
-        initials: "MR",
-        bio: "Full-stack engineer specializing in web technologies and game engine development.",
-        color: "bg-studio-blue",
-      },
-      {
-        name: "Emily Watson",
-        role: "UI/UX Designer",
-        initials: "EW",
-        bio: "Award-winning designer with expertise in user experience and interface design.",
-        color: "bg-studio-orange",
-      },
-      {
-        name: "David Kim",
-        role: "Technical Artist",
-        initials: "DK",
-        bio: "Innovative gameplay designer with focus on player engagement and game mechanics.",
-        color: "bg-studio-blue",
-      },
-    ],
-  }
+    
 }
 
-// Initialize the website
-document.addEventListener("DOMContentLoaded", async () => {
-  const data = await loadData()
-
-  if (document.getElementById("games-grid")) {
-    loadGames(data.games)
-  }
-
-  if (document.getElementById("team-grid")) {
-    loadTeam(data.team)
-  }
-
-  setupMobileMenu()
-  setupSmoothScrolling()
-})
-
-// Load games into the grid
+// Load games into the grid (for index.html)
 function loadGames(games) {
-  const gamesGrid = document.getElementById("games-grid")
-  if (!gamesGrid) return
-
-  const gameCards = games
-    .filter((game) => !game.featured)
-    .map(
-      (game) => `
-        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-4 border-[#FBB715]">
-            <div class="${game.color} h-32 flex items-center justify-center">
-                <h3 class="text-white font-bold text-lg">${game.title}</h3>
-            </div>
-            <div class="p-6">
-                <div class="text-studio-orange text-sm font-semibold mb-2">${game.category}</div>
-                <h4 class="font-bold text-studio-blue mb-2">${game.title}</h4>
-                <p class="text-gray-600 text-sm mb-4">${game.description}</p>
-                <!-- Added Play Game button to each game card -->
-                <div class="flex gap-2">
-                    <button class="bg-studio-blue text-white px-4 py-2 rounded text-sm hover:bg-studio-blue/90 transition-colors flex-1" onclick="openGameDetail('${game.id}')">
-                        Play Game
-                    </button>
-                    <button class="bg-studio-orange text-white px-4 py-2 rounded text-sm hover:bg-studio-orange/90 transition-colors" onclick="openGameDetail('${game.id}')">
-                        Details
-                    </button>
+    const gamesGrid = document.getElementById("games-grid");
+    if (!gamesGrid) return;
+    gamesGrid.innerHTML = games
+        .filter((game) => !game.featured)
+        .map( (game) => `
+            <div class="bg-white rounded-lg font-candaraBold overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-4 border-[#FBB715]">
+                <div class="bg-${game.color} h-32 flex items-center justify-center">
+                    <h3 class="text-white font-bold text-lg">${game.title}</h3>
                 </div>
-            </div>
-        </div>
-    `,
-    )
-    .join("")
-
-  gamesGrid.innerHTML = gameCards
+                <div class="p-6 bg-studio-cream">
+                    <div class="bg-${game.color} w-fit py-1 px-2 rounded">
+                        <h3 class="text-${game.text || 'white'} font-bold text-sm">${game.category}</h3>
+                    </div>
+                    <h4 class="font-bold text-studio-blue mb-2">${game.title}</h4>
+                    <p class="text-gray-600 text-sm mb-4">${game.description}</p>
+                    <div>
+                        <button class="text-studio-orange flex items-center gap-1 text-sm transition-colors flex-1" onclick="openGameDetail('${game.id}')">
+                            Play Game 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M18.5 12.214a1 1 0 0 0-1-1H5a1 1 0 1 0 0 2h12.5a1 1 0 0 0 1-1" clip-rule="evenodd" /><path fill="currentColor" fill-rule="evenodd" d="M20 12.214a1 1 0 0 0-.293-.707l-4.5-4.5a1 1 0 1 0-1.414 1.414l3.793 3.793l-3.793 3.793a1 1 0 0 0 1.414 1.415l4.5-4.5a1 1 0 0 0 .293-.708" clip-rule="evenodd" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>`
+        ).join("");
 }
 
-// Load team members
+// Load team members into the grid (for index.html)
 function loadTeam(team) {
-  const teamGrid = document.getElementById("team-grid")
-  if (!teamGrid) return
-
-  const teamCards = team
-    .map(
-      (member) => `
-        <div class="bg-white rounded-lg p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-            <div class="w-16 h-16 ${member.color} rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span class="text-white font-bold text-lg">${member.initials}</span>
-            </div>
-            <h4 class="font-bold text-studio-blue mb-1">${member.name}</h4>
-            <p class="text-studio-orange text-sm font-semibold mb-3">${member.role}</p>
-            <p class="text-gray-600 text-sm">${member.bio}</p>
-        </div>
-    `,
-    )
-    .join("")
-
-  teamGrid.innerHTML = teamCards
+    const teamGrid = document.getElementById("team-grid");
+    if (!teamGrid) return;
+    teamGrid.innerHTML = team
+        .map((member) => `
+            <div class="bg-white rounded-lg p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                <div class="w-16 h-16 bg-${member.color} rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">${member.initials}</span>
+                </div>
+                <h4 class="font-bold text-studio-blue mb-1">${member.name}</h4>
+                <p class="text-studio-orange text-sm font-semibold mb-3">${member.role}</p>
+                <p class="text-gray-600 text-sm">${member.bio}</p>
+            </div>`
+        ).join("");
 }
 
 // Open game detail page
 function openGameDetail(gameId) {
-  window.location.href = `game-detail.html?game=${gameId}`
+    window.location.href = `game-detail.html?game=${gameId}`;
 }
 
-// Load game detail page content
-async function loadGameDetail(gameId) {
-  const data = await loadData()
-  const game = data.games.find((g) => g.id === gameId)
-
-  if (!game) {
-    // Redirect to main page if game not found
-    window.location.href = "index.html"
-    return
-  }
-
-  // Update page title
-  document.title = `${game.title} - 275 Studio`
-  const pageTitle = document.getElementById("page-title")
-  if (pageTitle) pageTitle.textContent = `${game.title} - 275 Studio`
-
-  // Update game title and description
-  const titleElement = document.getElementById("game-title")
-  const descriptionElement = document.getElementById("game-description")
-  const categoryElement = document.getElementById("game-category")
-
-  if (titleElement) titleElement.textContent = game.title
-  if (descriptionElement) descriptionElement.textContent = game.longDescription || game.description
-  if (categoryElement) categoryElement.textContent = game.category
-
-  // Update play buttons
-  const playItchioBtn = document.getElementById("play-itchio")
-  const playNewgroundsBtn = document.getElementById("play-newgrounds")
-
-  if (playItchioBtn && game.links?.itchio) {
-    playItchioBtn.onclick = () => window.open(game.links.itchio, "_blank")
-  }
-  if (playNewgroundsBtn && game.links?.newgrounds) {
-    playNewgroundsBtn.onclick = () => window.open(game.links.newgrounds, "_blank")
-  }
-
-  // Load game features
-  if (game.features) {
-    const featuresContainer = document.getElementById("game-features")
-    if (featuresContainer) {
-      featuresContainer.innerHTML = game.features
-        .map(
-          (feature) => `
-                <div class="flex items-start space-x-3">
-                    <div class="w-2 h-2 bg-studio-orange rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                        <h4 class="text-white font-semibold mb-1">${feature.title}</h4>
-                        <p class="text-white/80 text-sm">${feature.description}</p>
-                    </div>
-                </div>
-            `,
-        )
-        .join("")
+async function loadGameDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameId = urlParams.get('game');
+    if (!gameId) {
+        // If no game ID in URL, maybe redirect or show an error
+        console.error("No game ID provided in the URL.");
+        return;
     }
-  }
+    
+    const data = await loadData();
+    const game = data.games.find((g) => g.id === gameId);
 
-  // Load game information
-  const gameInfoContainer = document.getElementById("game-info")
-  if (gameInfoContainer && game.releaseDate) {
-    gameInfoContainer.innerHTML = `
-            <div class="flex justify-between">
-                <span class="text-studio-blue font-semibold">Release Date</span>
-                <span class="text-studio-blue/80">${game.releaseDate}</span>
-            </div>
-            <div class="flex justify-between">
-                <span class="text-studio-blue font-semibold">Platform</span>
-                <span class="text-studio-blue/80">${game.platform}</span>
-            </div>
-            <div class="flex justify-between">
-                <span class="text-studio-blue font-semibold">Languages</span>
-                <span class="text-studio-blue/80">${game.languages}</span>
-            </div>
-            <div class="flex justify-between">
-                <span class="text-studio-blue font-semibold">File Size</span>
-                <span class="text-studio-blue/80">${game.fileSize}</span>
-            </div>
-            <div class="flex justify-between">
-                <span class="text-studio-blue font-semibold">Age Rating</span>
-                <span class="text-studio-blue/80">${game.ageRating}</span>
-            </div>
-            <div class="flex justify-between">
-                <span class="text-studio-blue font-semibold">Players</span>
-                <span class="text-studio-blue/80">${game.players}</span>
-            </div>
-        `
-  }
-
-  // Load developer information
-  if (game.developer) {
-    const dev = game.developer
-    const nameElement = document.getElementById("developer-name")
-    const titleElement = document.getElementById("developer-title")
-    const bioElement = document.getElementById("developer-bio")
-    const linksContainer = document.getElementById("developer-links")
-
-    if (nameElement) nameElement.textContent = dev.name
-    if (titleElement) titleElement.textContent = dev.title
-    if (bioElement) bioElement.textContent = dev.bio
-
-    if (linksContainer) {
-      linksContainer.innerHTML = `
-                <div class="flex items-center space-x-3 bg-studio-blue/50 rounded p-3">
-                    <div class="w-8 h-8 bg-studio-orange rounded flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs">@</span>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white text-sm font-semibold">Email</div>
-                        <div class="text-white/80 text-xs">${dev.email}</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 bg-studio-blue/50 rounded p-3">
-                    <div class="w-8 h-8 bg-studio-orange rounded flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs">G</span>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white text-sm font-semibold">GitHub</div>
-                        <div class="text-white/80 text-xs">${dev.github}</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 bg-studio-blue/50 rounded p-3">
-                    <div class="w-8 h-8 bg-studio-orange rounded flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs">T</span>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white text-sm font-semibold">Twitter</div>
-                        <div class="text-white/80 text-xs">${dev.twitter}</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 bg-studio-blue/50 rounded p-3">
-                    <div class="w-8 h-8 bg-studio-orange rounded flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs">P</span>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-white text-sm font-semibold">Portfolio</div>
-                        <div class="text-white/80 text-xs">${dev.portfolio}</div>
-                    </div>
-                </div>
-            `
+    if (!game) {
+        console.error("Game not found:", gameId);
+        window.location.href = "index.html"; // Redirect if game not found
+        return;
     }
-  }
+
+    // --- NEW LOGIC: Find the developer using creatorId ---
+    const developer = data.team.find((member) => member.id === game.creatorId);
+
+    // Update page title
+    document.title = `${game.title} - 275 Studio`;
+    
+    // Update simple text content
+    const elementsToUpdate = {
+        '#page-title': `${game.title} - 275 Studio`,
+        '#game-title': game.title,
+        '#game-description': game.longDescription || game.description,
+        '#game-category': game.category,
+        // --- UPDATED: Use the found developer object ---
+        '#developer-name': developer?.name,
+        '#developer-title': developer?.role, // Assuming role is the title
+        '#developer-bio': developer?.bio,
+    };
+
+    for (const selector in elementsToUpdate) {
+        const element = document.querySelector(selector);
+        if (element && elementsToUpdate[selector]) {
+            element.textContent = elementsToUpdate[selector];
+        }
+    }
+    const screenshotContainer = document.getElementById("game-screenshots");
+
+    if (screenshotContainer && game.screenshots) {
+        let screenshots = Array.isArray(game.screenshots) ? game.screenshots : [game.screenshots];
+        screenshotContainer.innerHTML = screenshots.map(src => `
+          <div class="relative w-full h-full rounded-lg overflow-hidden">
+              <img src="${src}" alt="${game.title} Screenshot"
+                  class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-studio-blue/40 flex items-center justify-center">
+                  <span class="text-white font-semibold text-lg">${game.title} Preview</span>
+              </div>
+          </div>
+      `).join("");
+    } else if (screenshotContainer) {
+        screenshotContainer.innerHTML = '<p class="text-white/80">No screenshots available.</p>';
+    }
+    // Update play buttons
+    const playItchioBtn = document.getElementById("play-itchio");
+    if (playItchioBtn && game.links?.itchio) {
+        playItchioBtn.style.display = 'block';
+        playItchioBtn.onclick = () => window.open(game.links.itchio, "_blank");
+    } else if (playItchioBtn) {
+        playItchioBtn.style.display = 'none';
+    }
+
+    const playNewgroundsBtn = document.getElementById("play-newgrounds");
+    if (playNewgroundsBtn && game.links?.newgrounds) {
+        playNewgroundsBtn.style.display = 'block';
+        playNewgroundsBtn.onclick = () => window.open(game.links.newgrounds, "_blank");
+    } else if (playNewgroundsBtn) {
+        playNewgroundsBtn.style.display = 'none';
+    }
+
+    // Load game features
+    const featuresContainer = document.getElementById("game-features");
+    if (featuresContainer && game.features?.length > 0) {
+        featuresContainer.innerHTML = game.features.map(feature => `
+            <div class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-studio-orange rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                    <h4 class="text-white font-semibold mb-1">${feature.title}</h4>
+                    <p class="text-white/80 text-sm">${feature.description}</p>
+                </div>
+            </div>`).join("");
+    } else if (featuresContainer) {
+        featuresContainer.innerHTML = '<p class="text-white/80">No specific features listed for this game.</p>';
+    }
+
+    // Load game info table
+    const gameInfoContainer = document.getElementById("game-info");
+    const gameInfo = {
+        "Release Date": game.releaseDate, "Platform": game.platform,
+        "Age Rating": game.ageRating, "Players": game.players,
+    };
+    if (gameInfoContainer) {
+        gameInfoContainer.innerHTML = Object.entries(gameInfo)
+            .filter(([_, value]) => value) // Only show rows where a value exists
+            .map(([key, value]) => `
+                <div class="flex justify-between">
+                    <span class="text-studio-blue font-semibold">${key}</span>
+                    <span class="text-studio-blue/80">${value}</span>
+                </div>`).join("");
+    }
+    
+    // Load developer links
+    const linksContainer = document.getElementById("developer-links");
+    // --- UPDATED: Use the new developer object and its links ---
+    const devLinks = {
+      Email: { value: developer?.email, icon: "@" },
+      GitHub: { value: developer?.github, icon: "G" },
+      Instagram: { value: developer?.instagram, icon: "T" },
+      Portfolio: { value: developer?.portfolio, icon: "P" },
+    };
+    if (linksContainer && developer) {
+        linksContainer.innerHTML = Object.entries(devLinks)
+            .filter(([_, link]) => link.value) // Only show links that exist
+            .map(([label, link]) => `
+            <div class="flex items-center space-x-3 bg-studio-blue/50 rounded p-3">
+                <div class="w-8 h-8 bg-studio-orange rounded flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-xs">${link.icon}</span>
+                </div>
+                <div class="text-left">
+                    <div class="text-white text-sm font-semibold">${label}</div>
+                    <div class="text-white/80 text-xs">${link.value}</div>
+                </div>
+            </div>`).join("");
+    } else if (linksContainer) {
+        linksContainer.innerHTML = ''; // Clear if no developer info
+    }
 }
-
-// Setup mobile menu
+// Setup mobile menu (using the more complete version)
 function setupMobileMenu() {
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn")
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener("click", () => {
-      // Mobile menu functionality can be added here
-      console.log("Mobile menu clicked")
-    })
-  }
+    const btn = document.getElementById("mobile-menu-btn");
+    const menu = document.getElementById("mobile-menu");
+    if (!btn || !menu) return;
+
+    if (btn.dataset.initialized === "true") return;
+    btn.dataset.initialized = "true";
+
+    let isOpen = false;
+    const setOpen = (open) => {
+        isOpen = open;
+        btn.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open.toString());
+        menu.classList.toggle("show", open);
+    };
+
+    btn.addEventListener("click", () => setOpen(!isOpen));
+    menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener("click", () => setOpen(false));
+    });
 }
 
-// Setup smooth scrolling for navigation links
+// Setup smooth scrolling for anchor links
 function setupSmoothScrolling() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    })
-  })
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    });
 }
 
-// Search functionality (can be extended)
-function searchGames(query) {
-  // Implementation for game search
-  console.log("Searching for:", query)
-}
+// Main initializer function that runs after the DOM is loaded
+async function main() {
+    // Panggil loadData di awal
+    const data = await loadData();
 
-// Filter games by category
-function filterGamesByCategory(category) {
-  // Implementation for category filtering
-  console.log("Filtering by category:", category)
-}
+    // JIKA data gagal dimuat (null), hentikan semua eksekusi.
+    if (!data) return; 
 
-function setupMobileMenu() {
-  const btn = document.getElementById("mobile-menu-btn");
-  const menu = document.getElementById("mobile-menu");
-  if (!btn || !menu) return;
+    setupMobileMenu();
+    setupSmoothScrolling();
 
-  // Prevent attaching multiple listeners if this gets called twice
-  if (btn.dataset.initialized === "true") return;
-  btn.dataset.initialized = "true";
-
-  let isOpen = false;
-
-  const setOpen = (open) => {
-  isOpen = open;
-  btn.classList.toggle("open", open);
-  btn.setAttribute("aria-expanded", open ? "true" : "false");
-
-  if (open) {
-    // ensure it's visible, then animate to 'show'
-    menu.classList.add("show");
-    } else {
-      // animate close, then hide height
-        menu.classList.remove("show");
+    // Logic for index.html
+    if (document.getElementById("games-grid")) {
+        loadGames(data.games);
     }
-  };
+    if (document.getElementById("team-grid")) {
+        loadTeam(data.team);
+    }
 
-  btn.addEventListener("click", () => setOpen(!isOpen));
-
-  // Close menu when clicking a link (optional nice touch)
-  menu.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", () => setOpen(false));
-  });
+    // Logic for game-detail.html
+    if (document.getElementById("game-title")) {
+        loadGameDetail(); // fungsi ini akan memanggil loadData lagi, tapi akan langsung dapat dari cache
+    }
 }
 
-  if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", setupMobileMenu);
-  } else {
-      setupMobileMenu();
-  }
+// Run the main initializer
+document.addEventListener("DOMContentLoaded", main);
