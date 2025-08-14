@@ -135,7 +135,7 @@
       "role": "Creative Director",
       "initials": "SC",
       "bio": "Visionary leader with over 10 years of experience in game design and creative direction. Sarah guides the artistic vision and ensures every game delivers a memorable experience.",
-      "color": "bg-studio-orange",
+      "color": "studio-orange",
       "email": "sarah@275studio.com",
       "linkedin": "linkedin.com/in/sarahchen-gamedesign",
       "instagram": "sarahchen_design"
@@ -146,7 +146,7 @@
       "role": "Lead Developer",
       "initials": "MR",
       "bio": "Full-stack engineer specializing in web technologies and game engine development. Marcus architects the technical foundation that powers our innovative gaming experiences.",
-      "color": "bg-studio-blue",
+      "color": "studio-blue",
       "email": "marcus@275studio.com",
       "github": "github.com/marcusrodriguez-dev"
     },
@@ -156,7 +156,7 @@
       "role": "UI/UX Designer",
       "initials": "EW",
       "bio": "Award-winning designer with expertise in user experience and interface design. Emily crafts intuitive and beautiful interfaces that enhance player engagement.",
-      "color": "bg-studio-orange",
+      "color": "studio-orange",
       "email": "emily@275studio.com",
       "portfolio": "emilywatson-design.com"
     },
@@ -166,7 +166,7 @@
       "role": "Technical Artist",
       "initials": "DK",
       "bio": "Innovative technical artist with focus on visual effects and performance optimization. David bridges the gap between artistic vision and technical implementation.",
-      "color": "bg-studio-blue",
+      "color": "studio-blue",
       "email": "david@275studio.com",
       "artstation": "artstation.com/davidkim-tech"
     },
@@ -176,7 +176,7 @@
       "role": "Lead Game Developer",
       "initials": "AC",
       "bio": "Passionate indie developer with 8+ years of experience creating immersive web-based gaming experiences. Specializes in RPG mechanics and pixel art aesthetics.",
-      "color": "bg-studio-blue",
+      "color": "studio-blue",
       "email": "hello@gamedev.com",
       "github": "github.com/alexchen-gamedev",
       "instagram": "@alexchen_dev",
